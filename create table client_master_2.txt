@@ -1,0 +1,236 @@
+create table client_master_2
+(
+client_no varchar2(6),
+name varchar2(20),
+address1 varchar2(30),
+address2 varchar2(30),
+city varchar2(15),
+pincode number(6),
+state varchar2(15),
+bal_due number(10,2)
+);
+
+
+insert into client_master_2 values('c00001','rakesh joshi','','','mumbai',40054,'maharashtra',150000);
+
+insert into client_master_2 values('c00002','mayur patel','','','madras',780002,'tamilnadu',0);
+
+insert into client_master_2 values('c00003','ishita maheta','','','mumbai',400054,'maharashtra',2500);
+
+insert into client_master_2 values('c00004','amit solanki','','','mumbai',400070,'maharashtra',0);
+
+insert into client_master_2 values('c00005','hiren pandya','','','mumbai',400070,'maharashtra',5000);
+
+insert into client_master_2 values('c00006','dipak sharma','','','jamnagar',400070,'gujrat',5000);
+
+select * from client_master_2;
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+create table product_master_2
+(
+productno varchar2(6),
+description varchar2(15),
+profitpersent number(4,2),
+unionmaster varchar2(10),
+qtyonhand number(8),
+reorlvl number(8),
+sellprise number(8,2),
+costprise number(8,2));
+
+insert into product_master_2 values('p00001','t-shirt',5,'prise',200,50,350,250);
+insert into product_master_2 values('p00002','shirt',6,'prise',150,50,500,350);
+insert into product_master_2 values('p00003','cotton jeans',5,'prise',150,50,500,350);
+insert into product_master_2 values('p00004','jeans',5,'prise',100,20,750,500);
+insert into product_master_2 values('p00005','trouser','prise',150,50,850,550);
+insert into product_master_2 values('p00006','pull over',2.5,'prise',80,30,700,450);
+insert into product_master_2 values('p00007','denim shert',4,'prise',100,40,350,250);
+insert into product_master_2 values('p00008','lycra top',5,'prise',150,54,300,175);
+insert into product_master_2 values('p00009','skert',5,'prise',150,30,450,300);
+
+select * from product_master_2 ;
+
+/////////////////////////////////////////////////////////////////////////
+create table salesman_master (
+    salesmanno varchar(10) primary key,
+    name varchar(50),
+    address1 varchar(50),
+    address2 varchar(50),
+    city varchar(30),
+    pincode int,
+    state varchar(30),
+    salamt int,
+    tgttoget int,
+    ytdsales int,
+    remarks varchar(20)
+);
+
+insert into salesman_master
+values ('s00001','aman','a/14','worli','mumbai',400002,'maharashtra',3000,100,50,'good');
+insert into salesman_master
+values ('s00002','omkar','65','nariman','mumbai',400001,'maharashtra',3000,200,100,'good');
+insert into salesman_master
+values ('s00003','raj','p-7','bandra','mumbai',400032,'maharashtra',3000,200,100,'good');
+insert into salesman_master
+values ('s00004','ashish','a/5','juhu','mumbai',400044,'maharashtra',3000,200,100,'good');
+
+select * from salesman_master;
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+1. find out the names of all the clients.
+select name from client_master;
+
+
+//////////////////////////////////////////////////////////////////////////////////
+2. retrieve the entire contents of the client master table.
+select * from client_master;
+
+
+//////////////////////////////////////////////////////////////////////////////////
+3. retrieve the list of names, city and state of all the clients.
+select name, city, state from client_master;
+
+//////////////////////////////////////////////////////////////////////////////////
+4. list the various products available from the product master table.
+select description from product_master;
+
+//////////////////////////////////////////////////////////////////////////////////
+5. list all the clients who are located in mumbai.
+select * from client_master
+where city='mumbai';
+
+//////////////////////////////////////////////////////////////////////////////////
+6. find the names of salesman who have a salary equal to rs.3000.
+select name from salesman_master
+where salamt=3000;
+
+//////////////////////////////////////////////////////////////////////////////////
+exercise on updating records in table
+
+//////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////
+1. change the city of client no. c00005 to bangalore.
+update client_master
+set city='bangalore'
+where clientno='c00005';
+
+//////////////////////////////////////////////////////////////////////////////////
+2. change the baldue of client no. c0001 to rs.1000.
+update client_master
+set baldue=1000
+where clientno='c0001';
+
+//////////////////////////////////////////////////////////////////////////////////
+3. change the cost price of trousers to rs.950.
+update product_master
+set costprice=950
+where description='trousers';
+
+//////////////////////////////////////////////////////////////////////////////////
+4. change the city of the salesman to pune.
+update salesman_master
+set city='pune';
+
+//////////////////////////////////////////////////////////////////////////////////
+5. change the sellprice of lycratops to rs.350.
+update product_master
+set sellprice=350
+where description='lycratops';
+
+//////////////////////////////////////////////////////////////////////////////////
+6. change address1, address2, city, pincode, state of salesman no. s00002.
+update salesman_master
+set address1='a/10',
+address2='andheri',
+city='pune',
+pincode=411001,
+state='maharashtra'
+where salesmanno='s00002';
+
+//////////////////////////////////////////////////////////////////////////////////
+exercise on deleting records in a table
+1. delete all salesman from salesman master whose salaries are equal to rs.3500.
+delete from salesman_master
+where salamt=3500;
+
+//////////////////////////////////////////////////////////////////////////////////
+2. delete all products from product master where quantity on hand is equal to 100.
+delete from product_master
+where qtyonhand=100;
+
+//////////////////////////////////////////////////////////////////////////////////
+3. delete from client master where state holds the value tamil nadu.
+delete from client_master
+where state='tamil nadu';
+
+//////////////////////////////////////////////////////////////////////////////////
+exercise on altering the table structure
+1. add a column called telephone of datatype number and size 10 to client master table.
+alter table client_master
+add telephone number(10);
+
+//////////////////////////////////////////////////////////////////////////////////
+2. change the size of sellprice column in product master to 10,2.
+alter table product_master
+modify sellprice number(10,2);
+
+//////////////////////////////////////////////////////////////////////////////////
+3. add column called profit of datatype number and size 12 to product master.
+alter table product_master
+add profit number(12);
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+select lower ('KAMANI SCIENCE AND PRATAPRAI ARTS COLLEGE')"lowe case" from dual;
+
+select upper ('kamani science and prataprai arts college')"uper case" from dual;
+
+select initcap ('oracle db')"sibstrom" from dual;
+
+select substr ('substring',3,5)"substring" from dual;
+select lpad('program',10,'*')"lpad" from dual;
+select rpad('program',10,'*')"rpad" from dual;
+
+select ltrim('nisha','N')"lrim" from dual;
+
+SELECT CHR(67) || CHR(65) || CHR(84) AS "CHAR"
+FROM dual;
+
+SELECT LENGTH('NISHA') AS "LENGTH"
+FROM dual;
+SELECT INSTR('NISHA PATEL', 'PATEL') AS "INSTR"
+FROM dual;
+
+SELECT CONCAT('HELLO ', 'WORLD') AS "CONCAT"
+FROM dual;
+
+SELECT 'HELLO ' || 'WORLD' AS "CONCAT"
+FROM dual;
+
+
+//////////////////////////////////////////////////////////////////////////////////
+4. remove column profit from product master.
+alter table product_master
+drop column profit;
+
+//////////////////////////////////////////////////////////////////////////////////
+5. change the name of salesman master table to sman_mast.
+rename salesman_master to sman_mast;
+
+//////////////////////////////////////////////////////////////////////////////////
+6. destroy the client master table along with its data.
+drop table client_master;
+
+//////////////////////////////////////////////////////////////////////////////////
